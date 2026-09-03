@@ -25,7 +25,7 @@ const Header = () => {
         />
       </div>
       <button
-        className="bg-buttons text-white py-2 px-4 rounded-full hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="bg-buttons  py-2 px-4 rounded-full hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
         onClick={() => setShowForm(true)}
       >
         Add Items

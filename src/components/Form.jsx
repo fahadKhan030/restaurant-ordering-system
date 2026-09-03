@@ -14,6 +14,7 @@ const Form = ({ setshowForm }) => {
 
   const formSubmitHandler = async (e) => {
     e.preventDefault();
+
     if (
       !FromData.name ||
       !FromData.description ||
@@ -25,9 +26,9 @@ const Form = ({ setshowForm }) => {
       return;
     }
 
-    try {
-      const fileName = `${Date.now()}-${FromData.image.name}`;
+    const fileName = `${Date.now()}-${FromData.image.name}`;
 
+    try {
       const { error: uploaderror } = await supabase.storage
         .from("restaurant-images")
         .upload(fileName, FromData.image);
@@ -36,25 +37,37 @@ const Form = ({ setshowForm }) => {
         alert("Error uploading image: " + uploaderror.message);
         return;
       }
-      alert("Image uploaded successfully:", fileName);
+
+      console.log("Image uploaded successfully:", fileName);
     } catch (error) {
       alert("Error uploading image: " + error.message);
       return;
     }
+
+    // Get image URL
+    const { data: publicUrlData } = supabase.storage
+      .from("restaurant-images")
+      .getPublicUrl(fileName);
+
+    const imageUrl = publicUrlData.publicUrl;
+
+    console.log("IMAGE URL:", imageUrl);
+
+    // Insert data into database
     const { data, error } = await supabase.from("menu_items").insert([
       {
         Name: FromData.name,
         description: FromData.description,
         price: FromData.price,
         category: FromData.category,
-        image_url: `https://your-supabase-url/storage/v1/object/public/restaurant-images/${FromData.image.name}`,
+        image_url: imageUrl,
         available: FromData.isAvailable,
       },
     ]);
     if (error) {
       alert("Error adding menu item: " + error.message);
     } else {
-      console.log("Menu item added successfully!");
+      console.log("Menu item added successfully!", data);
     }
   };
 
