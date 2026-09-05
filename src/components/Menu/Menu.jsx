@@ -28,14 +28,17 @@ const Menu = () => {
           Every bits hits different. Choose Your Category and feast
         </p>
       </div>
-      <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  ">
+      <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4  ">
         {menuItems.map((items) => {
           return (
-            <div key={items.id} className="bg-white p-3 rounded-2xl">
+            <div
+              key={items.id}
+              className="bg-white border border-gray-400 p-3 rounded-2xl"
+            >
               <img
                 src={items.image_url}
                 alt={items.name}
-                className="w-full h-[250px] object-cover rounded-2xl"
+                className="w-full  object-contain rounded-2xl"
               />
               <div className="flex flex-col gap-0">
                 <h4 className="text-xl font-bold">{items.Name}</h4>
@@ -45,10 +48,10 @@ const Menu = () => {
               </div>
               <div className="flex justify-between mt-3 text-center">
                 <span className="text-md text-[#FF7B40] font-semibold">
-                  ${items.price.toFixed(2)}
+                  {items.price.toFixed(2)}
                 </span>
-                <button className=" bg-[#4D0610] p-1 rounded-xl hover:cursor-pointer text-2xl">
-                  <img src={Add} alt="add" className="h-5" />
+                <button className=" bg-[#4D0610] p-1 rounded-md hover:cursor-pointer text-2xl">
+                  <img src={Add} alt="add" className="h-4" />
                 </button>
               </div>
             </div>

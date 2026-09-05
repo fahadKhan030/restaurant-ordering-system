@@ -3,6 +3,8 @@ import { useState } from "react";
 import { supabase } from "../lib/Supabase";
 
 const Form = ({ setshowForm }) => {
+  const [isloading, setIsloading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [FromData, setFromData] = useState({
     name: "",
     description: "",
@@ -26,6 +28,8 @@ const Form = ({ setshowForm }) => {
       return;
     }
 
+    setIsloading(true);
+    setSuccess(false);
     const fileName = `${Date.now()}-${FromData.image.name}`;
 
     try {
@@ -66,9 +70,13 @@ const Form = ({ setshowForm }) => {
     ]);
     if (error) {
       alert("Error adding menu item: " + error.message);
-    } else {
-      console.log("Menu item added successfully!", data);
     }
+    setIsloading(false);
+    setSuccess(true);
+
+    setTimeout(() => {
+      setSuccess(false);
+    }, 3000);
   };
 
   return (
@@ -142,9 +150,20 @@ const Form = ({ setshowForm }) => {
           </label>
           <button
             type="submit"
-            className="bg-buttons text-white py-2 px-4 rounded-full  hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+            disabled={isloading}
+            className="bg-buttons text-white py-2 px-4 rounded-full 
+             hover:cursor-pointer disabled:opacity-70 
+             disabled:cursor-not-allowed
+             flex items-center justify-center gap-2"
           >
-            Add Item
+            {isloading ? (
+              <>
+                <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                Adding...
+              </>
+            ) : (
+              "Add Item"
+            )}
           </button>
         </form>
       </div>
