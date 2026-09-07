@@ -14,7 +14,7 @@ const Header = () => {
         </p>
       </div>
 
-      <div className="relative">
+      <div className="relative hidden md:block">
         <button className="absolute right-1.5 top-1.5 bg-buttons rounded-full text-[16px] px-3 py-0.5">
           Search
         </button>
@@ -25,7 +25,7 @@ const Header = () => {
         />
       </div>
       <button
-        className="bg-buttons  py-2 px-4 rounded-full hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="hidden md:block bg-buttons  py-2 px-4 rounded-full hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
         onClick={() => setShowForm(true)}
       >
         Add Items
