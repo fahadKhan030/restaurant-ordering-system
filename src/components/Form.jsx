@@ -64,9 +64,9 @@ const Form = ({ setshowForm }) => {
       {
         Name: FromData.name,
         description: FromData.description,
-        price: FromData.price,
-        MPrice: FromData.MPrice,
-        LPrice: FromData.LPrice,
+        price: Number(FromData.price),
+        MPrice: FromData.MPrice === "" ? null : Number(FromData.MPrice),
+        LPrice: FromData.LPrice === "" ? null : Number(FromData.LPrice),
         category: FromData.category,
         image_url: imageUrl,
         available: FromData.isAvailable,
@@ -117,7 +117,7 @@ const Form = ({ setshowForm }) => {
           />
           <input
             className="border border-buttons focus:outline-none px-3 py-1 rounded-2xl "
-            type="text"
+            type="number"
             placeholder="Regular Price"
             value={FromData.price}
             onChange={(e) =>
@@ -126,7 +126,7 @@ const Form = ({ setshowForm }) => {
           />
           <input
             className="border border-buttons focus:outline-none px-3 py-1 rounded-2xl "
-            type="text"
+            type="number"
             placeholder="Medium Price"
             value={FromData.MPrice}
             onChange={(e) =>
@@ -135,7 +135,7 @@ const Form = ({ setshowForm }) => {
           />
           <input
             className="border border-buttons focus:outline-none px-3 py-1 rounded-2xl "
-            type="text"
+            type="number"
             placeholder="Large Price"
             value={FromData.LPrice}
             onChange={(e) =>

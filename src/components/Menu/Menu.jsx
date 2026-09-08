@@ -1,11 +1,12 @@
 import React from "react";
 import { supabase } from "../../lib/Supabase";
 import { useEffect, useState } from "react";
-import Add from "../../assets/addIcon.png";
+// import Add from "../../assets/addIcon.png";
 import Category from "../Category/Buttons";
 
 const Menu = () => {
   const [menuItems, setmenuItems] = useState([]);
+  const [filterItems, setFilterItems] = useState([]);
   useEffect(() => {
     const MenuData = async () => {
       const { data, error } = await supabase.from("menu_items").select("*");
@@ -14,11 +15,13 @@ const Menu = () => {
       }
 
       setmenuItems(data);
+      setFilterItems(data);
     };
 
     MenuData();
   }, []);
-  console.log(menuItems);
+
+  // console.log(filterItems);
 
   return (
     <div className="px-4 py-10 bg-[#F9F6F3]">
@@ -26,16 +29,20 @@ const Menu = () => {
         <span className="text-[#FD7C3A] border-1 px-2 py-1 rounded-2xl border-[#FD7C3A] text-[13px] font-semibold">
           Menu
         </span>
-        <h1 className="text-xl md:text-2xl lg:text-6xl font-bold text-[#4D0610]">
+        <h1 className="text-xl md:text-5xl lg:text-6xl font-bold text-[#4D0610]">
           PICK YOU CRAVING{" "}
         </h1>
         <p className="text-[#777B7A] pb-5 text-[13px]">
           Every bits hits different. Choose Your Category and feast
         </p>
-        <Category />
+        <Category
+          menuItems={menuItems}
+          filterItems={filterItems}
+          setFilterItems={setFilterItems}
+        />
       </div>
-      <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4  ">
-        {menuItems.map((items) => {
+      <article className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4  ">
+        {filterItems.map((items) => {
           return (
             <div
               key={items.id}

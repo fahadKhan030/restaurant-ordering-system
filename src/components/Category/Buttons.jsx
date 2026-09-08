@@ -1,18 +1,38 @@
 import React from "react";
 
-const Buttons = () => {
+const Buttons = ({ menuItems, filterItems, setFilterItems }) => {
+  const handleFilter = (category) => {
+    if (category === "all") {
+      setFilterItems(menuItems);
+      return;
+    }
+    const filteredItems = filterItems.filter(
+      (items) => items.category === category,
+    );
+    console.log(category);
+    setFilterItems(filteredItems);
+
+    // const filteredItems = menuItems.filter(
+    //   (item) => item.category === category,
+    // );
+    // if (filteredItems.length === 0) {
+    //   alert(`No items found in this ${category} category`);
+    // }
+    // setFilterItems(filteredItems);
+  };
+
   const buttons = [
     {
       id: 1,
-      Category: "Hot Selling",
+      Category: "all",
     },
     {
       id: 2,
-      Category: "Burgers",
+      Category: "burger",
     },
     {
       id: 3,
-      Category: "Pizza",
+      Category: "pizza",
     },
     {
       id: 4,
@@ -34,6 +54,7 @@ const Buttons = () => {
         <button
           key={button.id}
           className="bg-[#F0E7C7] text-black text-sm py-1.5 px-4 rounded-full hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onClick={() => handleFilter(button.Category)}
         >
           {button.Category}
         </button>
