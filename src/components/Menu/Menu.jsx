@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { supabase } from "../../lib/Supabase";
 import { useEffect, useState } from "react";
 // import Add from "../../assets/addIcon.png";
 import Category from "../Category/Buttons";
+import { CartContext } from "../../Context/CartContext";
 
 const Menu = () => {
+  const { Cart, addToCart } = useContext(CartContext);
+
   const [menuItems, setmenuItems] = useState([]);
   const [filterItems, setFilterItems] = useState([]);
   useEffect(() => {
@@ -78,7 +81,10 @@ const Menu = () => {
               </div> */}
               {/* add to cart  */}
               <div className="flex justify-between mt-3 text-center">
-                <button className=" bg-[#4D0610] p-1 rounded-md hover:cursor-pointer text-md text-white w-full">
+                <button
+                  onClick={() => addToCart(items)}
+                  className=" bg-[#4D0610] p-1 rounded-md hover:cursor-pointer text-md text-white w-full"
+                >
                   Add to cart
                 </button>
               </div>
