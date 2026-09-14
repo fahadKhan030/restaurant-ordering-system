@@ -11,14 +11,6 @@ const Buttons = ({ menuItems, filterItems, setFilterItems }) => {
     );
     console.log(category);
     setFilterItems(filteredItems);
-
-    // const filteredItems = menuItems.filter(
-    //   (item) => item.category === category,
-    // );
-    // if (filteredItems.length === 0) {
-    //   alert(`No items found in this ${category} category`);
-    // }
-    // setFilterItems(filteredItems);
   };
 
   const buttons = [
