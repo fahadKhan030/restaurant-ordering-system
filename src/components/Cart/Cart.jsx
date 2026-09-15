@@ -3,15 +3,7 @@ import { CartContext } from "../../Context/CartContext";
 import Romove from "../../assets/Remove.png";
 
 const Cart = () => {
-  const [number, setNumber] = useState(1);
-  const { Cart, removeItem } = useContext(CartContext);
-
-  const itemQuntity = () => {
-    setNumber(number + 1);
-  };
-  const itemreduce = () => {
-    setNumber(number - 1);
-  };
+  const { Cart, removeItem, IncreaseQuantity } = useContext(CartContext);
 
   return (
     <div className="fixed right-0 top-10 p-5 bg-white rounded-xl w-[350px]">
@@ -36,22 +28,18 @@ const Cart = () => {
                 <p className="text-[13px] text-gray-600">{item.description}</p>
               </div>
 
-              <h5 className="font-semibold">{item.price}</h5>
+              <h5 className="font-semibold">{item.price * item.quantity}</h5>
 
               <div className="flex justify-between items-center">
                 <div className="flex gap-2">
-                  <button
-                    disabled={number === 1}
-                    onClick={itemreduce}
-                    className="bg-[#4D0610] px-2 rounded-2xl text-white"
-                  >
+                  <button className="bg-[#4D0610] px-2 rounded-2xl text-white">
                     -
                   </button>
 
-                  <span>{number}</span>
+                  <span>{item.quantity}</span>
 
                   <button
-                    onClick={itemQuntity}
+                    onClick={() => IncreaseQuantity(item.id)}
                     className="bg-[#4D0610] px-2 rounded-2xl text-white"
                   >
                     +
