@@ -4,6 +4,7 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [Cart, setCart] = useState([]);
+  const [togglecart, settogglecart] = useState(false);
 
   useEffect(() => {
     console.log("Cart:", Cart);
@@ -36,9 +37,21 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  const togglec = () => {
+    settogglecart((prev) => !prev);
+    console.log(togglecart);
+  };
+
   return (
     <CartContext.Provider
-      value={{ Cart, addToCart, removeItem, IncreaseQuantity }}
+      value={{
+        Cart,
+        addToCart,
+        removeItem,
+        IncreaseQuantity,
+        togglecart,
+        togglec,
+      }}
     >
       {children}
     </CartContext.Provider>

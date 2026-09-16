@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Form from "./Form";
 import { useState } from "react";
+import { CartContext } from "../Context/CartContext";
 
 const Header = () => {
   const [showForm, setShowForm] = useState(false);
+
+  const { togglec } = useContext(CartContext);
 
   return (
     <div className="flex items-center justify-between p-4 bg-[#f3eee8]">
@@ -24,6 +27,12 @@ const Header = () => {
           className="border border-gray-300 rounded-full py-2 px-3 bg-white focus:outline-none focus:ring-2 w-[250px] focus:ring-blue-500"
         />
       </div>
+      <button
+        onClick={togglec}
+        className="hidden md:block bg-buttons  py-2 px-4 rounded-full hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        show cart
+      </button>
       <button
         className="hidden md:block bg-buttons  py-2 px-4 rounded-full hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
         onClick={() => setShowForm(true)}
