@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
-import Form from "./Form";
+
 import { useState } from "react";
 import { CartContext } from "../Context/CartContext";
 
 const Header = () => {
-  const [showForm, setShowForm] = useState(false);
-
   const { togglec } = useContext(CartContext);
 
   return (
@@ -33,13 +31,6 @@ const Header = () => {
       >
         show cart
       </button>
-      <button
-        className="hidden md:block bg-buttons  py-2 px-4 rounded-full hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
-        onClick={() => setShowForm(true)}
-      >
-        Add Items
-      </button>
-      {showForm && <Form setshowForm={setShowForm} />}
     </div>
   );
 };
