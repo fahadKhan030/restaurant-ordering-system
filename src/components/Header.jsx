@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
+import carticon from "../assets/carticon.png";
 
 import { useState } from "react";
 import { CartContext } from "../Context/CartContext";
 
 const Header = () => {
-  const { togglec } = useContext(CartContext);
+  const { togglec, Cart } = useContext(CartContext);
 
   return (
     <div className="flex items-center justify-between p-4 bg-[#f3eee8]">
@@ -27,9 +28,19 @@ const Header = () => {
       </div>
       <button
         onClick={togglec}
-        className="hidden md:block bg-buttons  py-2 px-4 rounded-full hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="relative  p-1.5 rounded-full hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
-        show cart
+        {Cart.length === 0 ? (
+          <p className="absolute top-0 right-0 h-4 w-4 flex items-center justify-center bg-buttons rounded-full text-[8px]">
+            0
+          </p>
+        ) : (
+          <p className="absolute top-0 right-0 h-4 w-4 flex items-center justify-center bg-buttons rounded-full text-[8px]">
+            {Cart.length}
+          </p>
+        )}
+
+        <img src={carticon} alt="" className="h-8" />
       </button>
     </div>
   );

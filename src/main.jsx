@@ -6,6 +6,7 @@ import { CartProvider } from "./Context/CartContext.jsx";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import MainDashboard from "./Dashboard/MainDashboard.jsx";
+import CheckOutForm from "./components/Cart/CheckOutForm.jsx";
 // import App from "./App.jsx";
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <MainDashboard />,
+  },
+  {
+    path: "/checkout",
+    element: <CheckOutForm />,
   },
 ]);
 

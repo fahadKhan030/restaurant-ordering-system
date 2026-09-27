@@ -2,10 +2,12 @@ import React, { useContext, useState } from "react";
 import { CartContext } from "../../Context/CartContext";
 import Romove from "../../assets/Remove.png";
 import CheckOutForm from "./CheckOutForm";
+import { NavLink } from "react-router";
+import emptycart from "../../assets/emptycart.png";
 
 const Cart = () => {
   const [toggleCheckOutFrom, setToggleCheckOutFrom] = useState();
-  const { Cart, removeItem, IncreaseQuantity, togglecart } =
+  const { Cart, removeItem, IncreaseQuantity, togglecart, togglec } =
     useContext(CartContext);
 
   const togglfrom = () => {
@@ -15,11 +17,11 @@ const Cart = () => {
 
   return (
     <div
-      className={`fixed flex flex-col items-center justify-between overflow-y-auto  top-25 p-5 bg-white duration-150 rounded-xl h-[70vh]  w-[350px] ${
+      className={`fixed flex flex-col items-center justify-between overflow-y-auto  top-22 p-2 bg-white duration-150 rounded-xl h-[80vh]  w-[350px] ${
         togglecart ? "right-1" : "-right-100"
       }`}
     >
-      <div>
+      <div className="w-full">
         <div className="flex items-center justify-between">
           <button></button>
           <h4 className="text-2xl font-semibold">Cart</h4>
@@ -27,7 +29,15 @@ const Cart = () => {
         </div>
 
         {Cart.length === 0 ? (
-          <p className="text-center text-gray-500 mx-2 ">your cart is empty </p>
+          <div className="flex flex-col h-full items-center justify-center text-center text-gray-500 mx-2 ">
+            <img src={emptycart} alt="" className="h-30" />
+            <p>
+              your Cart is empty back to{" "}
+              <button onClick={togglec} className="cursor-pointer underline">
+                Menu
+              </button>
+            </p>
+          </div>
         ) : (
           Cart.map((item) => {
             return (
@@ -80,12 +90,13 @@ const Cart = () => {
         )}
       </div>
       {toggleCheckOutFrom && <CheckOutForm />}
-      <button
-        onClick={togglfrom}
-        className="w-full items-centers bg-buttons p-2 rounded-full mt-3 hover:cursor-pointer"
+      <NavLink
+        to="/Checkout"
+        // onClick={togglfrom}
+        className="w-full text-center bg-buttons p-2 rounded-full mt-3 hover:cursor-pointer"
       >
         Checkout
-      </button>
+      </NavLink>
     </div>
   );
 };

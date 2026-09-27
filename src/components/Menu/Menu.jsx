@@ -60,12 +60,12 @@ const Menu = () => {
               {/* Name,Description and Price*/}
               <div className="flex justify-between">
                 <div>
-                  <h4 className="text-xl font-bold">{items.Name}</h4>
+                  <h4 className="text-xl font-semibold">{items.Name}</h4>
                   <span className="text-gray-500 text-[13px]">
                     {items.description}
                   </span>
                 </div>
-                <span className="text-md text-[#4D0610] font-bold">
+                <span className="text-md text-[#4D0610] font-semibold">
                   {items.price.toFixed(2)}
                 </span>
               </div>
@@ -84,13 +84,14 @@ const Menu = () => {
               <div className="flex justify-between mt-3 text-center">
                 <button
                   onClick={() => addToCart(items)}
-                  className=" bg-[#4D0610] p-1 rounded-md hover:cursor-pointer text-md text-white w-full"
+                  className=" bg-[#4D0610] p-1 rounded-full hover:cursor-pointer text-md text-white w-full"
                 >
                   Add to cart
                 </button>
               </div>
             </div>
           );
+          n;
         })}
       </article>
     </div>
