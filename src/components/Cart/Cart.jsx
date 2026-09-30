@@ -7,8 +7,14 @@ import emptycart from "../../assets/emptycart.png";
 
 const Cart = () => {
   const [toggleCheckOutFrom, setToggleCheckOutFrom] = useState();
-  const { Cart, removeItem, IncreaseQuantity, togglecart, togglec } =
-    useContext(CartContext);
+  const {
+    Cart,
+    removeItem,
+    IncreaseQuantity,
+    decreaseQuantity,
+    togglecart,
+    togglec,
+  } = useContext(CartContext);
 
   const togglfrom = () => {
     setToggleCheckOutFrom((prevtoggleCheckOutFrom) => !toggleCheckOutFrom);
@@ -63,7 +69,10 @@ const Cart = () => {
 
                   <div className="flex justify-between items-center">
                     <div className="flex gap-2">
-                      <button className="bg-[#4D0610] px-2 rounded-2xl text-white">
+                      <button
+                        onClick={() => decreaseQuantity(item.id)}
+                        className="bg-[#4D0610] hover:cursor-pointer px-2 rounded-2xl text-white"
+                      >
                         -
                       </button>
 
@@ -71,7 +80,7 @@ const Cart = () => {
 
                       <button
                         onClick={() => IncreaseQuantity(item.id)}
-                        className="bg-[#4D0610] px-2 rounded-2xl text-white"
+                        className="bg-[#4D0610] px-2 rounded-2xl hover:cursor-pointer text-white"
                       >
                         +
                       </button>

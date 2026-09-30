@@ -12,8 +12,18 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (item) => {
     const existingItem = Cart.find((cartItem) => cartItem.id === item.id);
+
     if (existingItem) {
-      alert("items are in cart");
+      setCart((prevCart) =>
+        prevCart.map((CarItem) =>
+          CarItem.id === item.id
+            ? {
+                ...CarItem,
+                quantity: CarItem.quantity + 1,
+              }
+            : CarItem,
+        ),
+      );
     } else {
       setCart([
         ...Cart,
@@ -36,6 +46,15 @@ export const CartProvider = ({ children }) => {
       ),
     );
   };
+  const decreaseQuantity = (id) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === id && item.quantity > 0
+          ? { ...item, quantity: item.quantity - 1 }
+          : item,
+      ),
+    );
+  };
 
   const togglec = () => {
     settogglecart((prev) => !prev);
@@ -50,6 +69,7 @@ export const CartProvider = ({ children }) => {
         removeItem,
         IncreaseQuantity,
         togglecart,
+        decreaseQuantity,
         togglec,
       }}
     >
