@@ -56,6 +56,10 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  const calculateTotalPrice = () => {
+    return Cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
   const togglec = () => {
     settogglecart((prev) => !prev);
     console.log(togglecart);
@@ -70,6 +74,7 @@ export const CartProvider = ({ children }) => {
         IncreaseQuantity,
         togglecart,
         decreaseQuantity,
+        calculateTotalPrice,
         togglec,
       }}
     >

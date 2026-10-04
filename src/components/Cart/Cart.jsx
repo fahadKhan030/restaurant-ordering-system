@@ -14,6 +14,7 @@ const Cart = () => {
     decreaseQuantity,
     togglecart,
     togglec,
+    calculateTotalPrice,
   } = useContext(CartContext);
 
   const togglfrom = () => {
@@ -98,14 +99,31 @@ const Cart = () => {
           })
         )}
       </div>
-      {toggleCheckOutFrom && <CheckOutForm />}
-      <NavLink
-        to="/Checkout"
-        // onClick={togglfrom}
-        className="w-full text-center bg-buttons p-2 rounded-full mt-3 hover:cursor-pointer"
-      >
-        Checkout
-      </NavLink>
+      <div className="flex flex-col justify-between w-full">
+        <div className=" px-4 ">
+          <h2 className="flex items-center justify-between w-full font-semibold text-xl">
+            <p>Sub Total</p>
+            <span>${calculateTotalPrice()}</span>
+          </h2>
+          <span className="flex items-center justify-between w-full border-b-1 border-dotted py-2">
+            <p>delivery fee</p>
+            <span>10</span>
+          </span>
+          <h2 className="flex items-center justify-between w-full font-bold text-xl">
+            <p>Total</p>
+            <span>${calculateTotalPrice() + 10}</span>
+          </h2>
+        </div>
+
+        {toggleCheckOutFrom && <CheckOutForm />}
+        <NavLink
+          to="/Checkout"
+          // onClick={togglfrom}
+          className="w-full text-center bg-buttons p-2 rounded-full mt-3 font-semibold hover:cursor-pointer"
+        >
+          Proceed to Checkout →
+        </NavLink>
+      </div>
     </div>
   );
 };
