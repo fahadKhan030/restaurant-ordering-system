@@ -4,30 +4,47 @@ import cross from "../../assets/cross.png";
 
 const CheckOutForm = () => {
   return (
-    <div className="flex items-center flex-col   justify-center fixed top-0 left-0 bg-white/20 backdrop-blur-lg   w-full h-[100lvh]">
-      <NavLink
-        to="/"
-        className="fixed top-4 right-3 backdrop-blur-lg bg-white/20 p-1 border border-black rounded-full "
-      >
-        <img src={cross} alt="" className="h-5" />
-      </NavLink>
-      <form action="" className="bg-white flex flex-col gap-2 p-3 rounded-md">
-        <input
-          type="text"
-          className=" border-1 border-gray-500 rounded-md py-1 px-3"
-          placeholder="Enter your name"
-        />
-        <input
-          type="text"
-          className=" border-1 border-gray-500 rounded-md py-1 px-3"
-          placeholder="your address  "
-        />
-        <input
-          type="number"
-          className="border-1 border-gray-500 rounded-md py-1 px-3"
-          placeholder="your ph number"
-        />
-      </form>
+    <div className="flex items-center flex-col  justify-center fixed top-0 left-0 bg-white/20 backdrop-blur-lg   w-full h-[100lvh]">
+      <div>
+        <h3 className="text-3xl font-semibold">Checkout</h3>
+        <p>please fill in your details to confirm your order</p>
+      </div>
+      <div>
+        <from className="bg-white max-w-[500px] w-full">
+          <h3 className="text-2xl font-semibold">Customer Information</h3>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="text" className="font-medium">
+              Full Name
+            </label>
+            <input
+              type="text"
+              placeholder="Enter your full name"
+              className="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="text" className="font-medium">
+              Phone Number
+            </label>
+            <input
+              type="number"
+              placeholder="Enter your phone number"
+              className="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="text" className="font-medium">
+              delivery Address
+            </label>
+            <input
+              type="address"
+              placeholder="Enter your delivery address"
+              className="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </from>
+        <div></div>
+      </div>
     </div>
   );
 };

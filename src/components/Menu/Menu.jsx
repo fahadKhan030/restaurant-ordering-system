@@ -91,7 +91,6 @@ const Menu = () => {
               </div>
             </div>
           );
-          n;
         })}
       </article>
     </div>
