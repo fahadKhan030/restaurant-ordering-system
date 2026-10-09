@@ -4,13 +4,13 @@ import cross from "../../assets/cross.png";
 
 const CheckOutForm = () => {
   return (
-    <div className="flex items-center flex-col  justify-center fixed top-0 left-0 bg-white/20 backdrop-blur-lg   w-full h-[100lvh]">
+    <div className="flex items-center justify-center flex-col">
       <div>
         <h3 className="text-3xl font-semibold">Checkout</h3>
         <p>please fill in your details to confirm your order</p>
       </div>
       <div>
-        <from className="bg-white max-w-[500px] w-full">
+        <from className="bg-white w-full">
           <h3 className="text-2xl font-semibold">Customer Information</h3>
           <div className="flex flex-col gap-2">
             <label htmlFor="text" className="font-medium">
