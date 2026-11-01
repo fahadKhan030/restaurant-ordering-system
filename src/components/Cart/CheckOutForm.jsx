@@ -1,11 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router";
 import cross from "../../assets/cross.png";
 import { CartContext } from "../../Context/CartContext";
 
 const CheckOutForm = () => {
+  const [fromData, setFromData] = useState({
+    name: "",
+    phone: "",
+    address: "",
+  });
   const { Cart } = useContext(CartContext);
-  console.log("Cart in CheckOutForm:", Cart);
+  // console.log("Cart in CheckOutForm:", Cart);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFromData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // First, check the submitted data
+    console.log("Customer Details:", fromData);
+    console.log("Ordered Items:", Cart);
+
+    // Clear the inputs
+    setFromData({
+      name: "",
+      phone: "",
+      address: "",
+    });
+  };
+
+  console.log("fromData:", fromData);
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -14,7 +42,7 @@ const CheckOutForm = () => {
         <p>please fill in your details to confirm your order</p>
       </div>
       <div className="flex gap-5">
-        <from className="bg-white">
+        <form className="bg-white" onSubmit={handleSubmit}>
           <h3 className="text-2xl font-semibold py-3">Customer Information</h3>
           <div className="flex flex-col gap-2">
             <label htmlFor="text" className="font-medium">
@@ -22,6 +50,9 @@ const CheckOutForm = () => {
             </label>
             <input
               type="text"
+              onChange={handleInputChange}
+              name="name"
+              value={fromData.name}
               placeholder="Enter your full name"
               className="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -32,24 +63,33 @@ const CheckOutForm = () => {
             </label>
             <input
               type="number"
+              onChange={handleInputChange}
+              name="phone"
+              value={fromData.phone}
               placeholder="Enter your phone number"
               className="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="text" className="font-medium">
-              delivery Address
+              Delivery Address
             </label>
             <input
-              type="address"
+              type="text"
+              onChange={handleInputChange}
+              name="address"
+              value={fromData.address}
               placeholder="Enter your delivery address"
               className="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <button className="bg-blue-500 w-full mt-4 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <button
+            type="submit"
+            className="bg-blue-500 w-full mt-4 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
             Place Order
           </button>
-        </from>
+        </form>
         <div clasName="">
           <h3>Order Summary</h3>
           <article className="flex flex-col gap-2">

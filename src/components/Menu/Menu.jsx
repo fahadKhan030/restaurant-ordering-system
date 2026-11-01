@@ -66,7 +66,7 @@ const Menu = () => {
                   </span>
                 </div>
                 <span className="text-md text-[#4D0610] font-semibold">
-                  $s{items.price.toFixed(2)}
+                  ${items.price.toFixed(2)}
                 </span>
               </div>
               {/* buttons for medium and large prices */}
