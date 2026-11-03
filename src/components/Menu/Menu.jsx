@@ -45,12 +45,12 @@ const Menu = () => {
         />
       </div>
 
-      <article className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4  ">
+      <article className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4">
         {filterItems.map((items) => {
           return (
             <div
               key={items.id}
-              className="border border-gray-400 bg-white p-3 rounded-2xl"
+              className="border border-gray-400 bg-white p-2 rounded-2xl"
             >
               <img
                 src={items.image_url}
