@@ -44,7 +44,6 @@ const Menu = () => {
           setFilterItems={setFilterItems}
         />
       </div>
-
       <article className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4">
         {filterItems.map((items) => {
           return (

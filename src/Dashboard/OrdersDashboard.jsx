@@ -121,7 +121,7 @@ const OrdersDashboard = () => {
       {error && <p className="mt-4 text-red-600">{error}</p>}
 
       {/* All orders */}
-      <div className="grid gap-6 mt-6">
+      <div className="grid grid-cols-3  gap-6 mt-6">
         {orders.map((order) => (
           <div key={order.id} className="bg-white rounded-xl p-6 shadow-sm">
             {/* Order heading */}
@@ -181,7 +181,7 @@ const OrdersDashboard = () => {
                         )}
 
                         <div>
-                          <h4 className="font-semibold">{itemName}</h4>
+                          <h4 className="text-sm">{itemName}</h4>
                           <p className="text-sm text-gray-500">
                             {quantity} × Rs. {unitPrice.toLocaleString("en-PK")}
                           </p>
