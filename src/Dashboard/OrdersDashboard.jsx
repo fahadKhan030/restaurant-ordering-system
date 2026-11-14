@@ -107,9 +107,11 @@ const OrdersDashboard = () => {
 
   console.log("Orders:", orders);
 
+  console.log(orders.order_item);
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold">Restaurant Dashboard</h1>
+      <h1 className="text-3xl font-bold">Orders</h1>
 
       {/* New order notification */}
       {notification && (
@@ -126,29 +128,25 @@ const OrdersDashboard = () => {
           <div key={order.id} className="bg-white rounded-xl p-6 shadow-sm">
             {/* Order heading */}
             <div className="flex justify-between items-center">
-              <h2 className="text-xl font-bold">Order #{order.id}</h2>
+              <h4 className=" text-xl">{order.name}</h4>
+              <h2 className=" text-md text-gray-600 font-semibold">
+                #{order.id}
+              </h2>
 
-              <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">
+              {/* <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">
                 {order.status}
-              </span>
+              </span> */}
             </div>
 
             {/* Customer information */}
-            <div className="mt-5 space-y-2">
-              <p>
-                <strong>Customer:</strong> {order.name}
-              </p>
-              <p>
-                <strong>Phone:</strong> {order.phone}
-              </p>
-              <p>
-                <strong>Address:</strong> {order.address}
-              </p>
-            </div>
+            <ul className="mt-5">
+              <li className="text-sm text-gray-600">{order.phone}</li>
+              <li className="text-sm text-gray-600">{order.address}</li>
+            </ul>
 
             {/* Ordered food items */}
             <div className="mt-6 border-t pt-5">
-              <h3 className="text-lg font-semibold mb-4">Ordered Items</h3>
+              <h3 className="text-lg font-semibold"></h3>
 
               <div className="space-y-4">
                 {order.order_items?.map((item) => {
@@ -161,7 +159,7 @@ const OrdersDashboard = () => {
                     menuItem?.name ||
                     `Menu Item #${item.menu_items_id}`;
 
-                  const itemImage = menuItem?.image_url || menuItem?.image;
+                  // const itemImage = menuItem?.image_url || menuItem?.image;
 
                   const unitPrice = Number(item.price);
                   const quantity = Number(item.quantity);
@@ -169,26 +167,16 @@ const OrdersDashboard = () => {
                   return (
                     <div
                       key={item.id}
-                      className="flex items-center justify-between gap-4 border-b pb-4"
+                      className="flex items-center justify-between"
                     >
-                      <div className="flex items-center gap-3">
-                        {itemImage && (
-                          <img
-                            src={itemImage}
-                            alt={itemName}
-                            className="w-16 h-16 rounded-lg object-cover"
-                          />
-                        )}
-
-                        <div>
-                          <h4 className="text-sm">{itemName}</h4>
-                          <p className="text-sm text-gray-500">
-                            {quantity} × Rs. {unitPrice.toLocaleString("en-PK")}
-                          </p>
+                      <div className="flex items-center">
+                        <div className="flex items-center gap-2 text-gray-800">
+                          <p className="text-sm ">{quantity} × </p>
+                          <h4 className="text-sm font-semibold">{itemName}</h4>
                         </div>
                       </div>
 
-                      <p className="font-semibold">
+                      <p className="font-semibold text-md">
                         Rs. {(unitPrice * quantity).toLocaleString("en-PK")}
                       </p>
                     </div>
